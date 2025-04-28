@@ -62,7 +62,7 @@ public class BookServiceTest {
         assertEquals(400, response.totalPages());
         assertEquals(100, response.pagesRead());
 
-        verify(repository, times(1)).save(any(Book.class));
+        verify(repository, times(2)).save(any(Book.class));
     }
 
     @Test
