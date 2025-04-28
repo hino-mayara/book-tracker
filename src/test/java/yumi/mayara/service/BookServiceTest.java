@@ -72,7 +72,7 @@ public class BookServiceTest {
                 "987654321",
                 "Robert Martin",
                 300,
-                400 // <- páginas lidas maior que total
+                400
         );
 
         BusinessException exception = assertThrows(BusinessException.class, () -> {
@@ -80,12 +80,11 @@ public class BookServiceTest {
         });
 
         assertEquals("The pages read cannot be more than the book's total pages.", exception.getMessage());
-        verify(repository, never()).save(any(Book.class)); // nunca deve tentar salvar
+        verify(repository, never()).save(any(Book.class));
     }
 
     @Test
     void shouldUpdateBookSuccessfully() {
-        // Arrange
         Long bookId = 1L;
 
         Book existingBook = Book.builder()
@@ -156,7 +155,6 @@ public class BookServiceTest {
 
     @Test
     void shouldThrowBusinessExceptionWhenUpdatingPagesReadGreaterThanTotalPages() {
-        // Arrange
         Long bookId = 3L;
 
         Book existingBook = Book.builder()
