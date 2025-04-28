@@ -2,6 +2,7 @@ package yumi.mayara.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import yumi.mayara.dto.response.BookResponse;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Builder
 public class Book {
 
     @Id
@@ -48,5 +50,16 @@ public class Book {
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = LocalDateTime.now();
+    }
+
+    public BookResponse toResponse() {
+        return BookResponse.builder()
+                .id(this.id)
+                .author(this.author)
+                .ISBN(this.ISBN)
+                .title(this.title)
+                .pagesRead(this.pagesRead)
+                .totalPages(this.totalPages)
+                .build();
     }
 }
