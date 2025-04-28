@@ -1,8 +1,9 @@
-name: Deploy na EC2 AWS
+name: Deploy no Docker Hub
 
 on:
   push:
-    branches: [main]
+    branches:
+      - "**"
 
 jobs:
   build:
